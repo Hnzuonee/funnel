@@ -1,18 +1,34 @@
-
 <!DOCTYPE html>
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exkluzivní Obsah</title>
+    <title>Exkluzivní obsah</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; padding: 40px; background: #ffebee; color: #333; }
-        button { padding: 10px 20px; font-size: 18px; cursor: pointer; background: #e91e63; color: white; border: none; border-radius: 8px; }
+        body { font-family: Arial, sans-serif; text-align: center; padding-top: 40px; background-color: #f7f7f7; }
+        button {
+            background-color: #ff69b4;
+            color: #ffffff;
+            border: none;
+            padding: 15px 25px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
-    <h1>Už jen jeden krok!</h1>
-    <p>Klikni na tlačítko níže pro přístup k exkluzivnímu obsahu.</p>
-    <button onclick="fetch('/.netlify/functions/redirect', {method: 'POST'}).then(res => res.json()).then(data => window.location.href=data.url);">Pokračovat</button>
+    <h1>Získej exkluzivní přístup!</h1>
+    <button id="redirectBtn">Pokračovat</button>
+
+    <script>
+        document.getElementById('redirectBtn').onclick = async () => {
+            const response = await fetch('/.netlify/functions/redirect', {
+                method: 'POST'
+            });
+            const data = await response.json();
+            window.location.href = data.url;
+        };
+    </script>
 </body>
 </html>
